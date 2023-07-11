@@ -19,14 +19,14 @@ function leerApi() {
       });
 
       console.table(array);
-      mostrarPersonajes();
+      actualizarTabla();
    })
    .catch(function(error) {
       console.log(error);
    });
 }
 
-function mostrarPersonajes() {
+function actualizarTabla() {
    let tbody = document.getElementById("pjs");
    tbody.innerHTML = "";
    for( let index = 0; index < array.length; index++) {
@@ -74,9 +74,9 @@ function mostrarPersonajes() {
       // Aquí guarde los datos en el array**
    };
 }
-document.addEventListener("DOMContentLoaded", mostrarPersonajes);
+document.addEventListener("DOMContentLoaded", actualizarTabla);
 
 function eliminarElemento(index) {
    array.splice(index, 1);
-   mostrarPersonajes();
+   actualizarTabla();
 }
