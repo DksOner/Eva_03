@@ -1,47 +1,82 @@
 const url = 'https://rickandmortyapi.com/api/character';
-let datosAPI = [];
+let array = [];
 
-function mostrarPersonajes() {
+function leerApi() {
    fetch(url)
    .then(function(response) {
       return response.json();
    })
-   .then( data => {
-      let tbody = document.getElementById("pjs");
-      for( let i of data["results"]) {
-         const fila = tbody.insertRow();
-         const columnId = fila.insertCell();
-         const columnName = fila.insertCell();
-         const columnEspecie = fila.insertCell();
-         const columnOrigen = fila.insertCell();
-         const columnImagen = fila.insertCell();
+   .then(function(data) {
+      data.results.forEach(function(item) {
+         const ob = {
+               "id" : item.id,
+               "nombre" : item.name,
+               "especie" : item.species,
+               "origen" : item.origin.name,
+               "imagen" : item.image
+         };
+         array.push(ob);
+      });
 
-         columnId.textContent = i.id;
-         columnName.textContent = i.name;
-         columnEspecie.textContent = i.species;
-         columnOrigen.textContent = i.origin.name;
-
-         const imagen = document.createElement("img");
-         imagen.src = i.image;
-         imagen.alt = i.name;
-         imagen.classList.add("personaje-imagen");
-         columnImagen.appendChild(imagen);
-
-         // Aquí guarde los datos en el array**
-         datosAPI.push({
-            id: i.id,
-            name: i.name,
-            species: i.species,
-            origin: i.origin.name,
-            image: i.image
-         });
-      };
+      console.table(array);
+      mostrarPersonajes();
    })
    .catch(function(error) {
       console.log(error);
    });
 }
 
-function agregarFila() {
-   
+function mostrarPersonajes() {
+   let tbody = document.getElementById("pjs");
+   tbody.innerHTML = "";
+   for( let index = 0; index < array.length; index++) {
+      let fila = document.createElement("tr");
+
+      let columnId = document.createElement("td");
+      columnId.textContent = array[index].id;
+      fila.appendChild(columnId);
+
+      let columnName = document.createElement("td");
+      columnName.textContent = array[index].nombre;
+      fila.appendChild(columnName);
+
+      let columnEspecie = document.createElement("td");
+      columnEspecie.textContent = array[index].especie;
+      fila.appendChild(columnEspecie);
+
+      let columnOrigen = document.createElement("td");
+      columnOrigen.textContent = array[index].origen;
+      fila.appendChild(columnOrigen);
+
+      let columnImagen = document.createElement("td");
+
+      let imagen = document.createElement("img");
+      imagen.src = array[index].imagen;
+      imagen.alt = array[index].nombre;
+      imagen.classList.add("personaje-imagen");
+      columnImagen.appendChild(imagen);
+      fila.appendChild(columnImagen);
+
+      // Crear la columna de opciones
+      let columnOpciones = document.createElement("td");
+      let btnEliminar = document.createElement("button");
+      btnEliminar.textContent = "Eliminar";
+      btnEliminar.className = "btn btn-danger me-2";
+      btnEliminar.addEventListener("click", function () {
+         eliminarElemento(index);
+      });
+      columnOpciones.appendChild(btnEliminar);
+
+      fila.appendChild(columnOpciones);
+
+      tbody.appendChild(fila);
+
+      // Aquí guarde los datos en el array**
+   };
+}
+document.addEventListener("DOMContentLoaded", mostrarPersonajes);
+
+function eliminarElemento(index) {
+   array.splice(index, 1);
+   mostrarPersonajes();
 }
