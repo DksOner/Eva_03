@@ -1,0 +1,8 @@
+#icon_portal {
+   width: 50px;
+   transition: transform 25s ease;
+}
+
+#icon_portal:hover {
+   transform: rotate(9999deg);
+}

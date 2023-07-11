@@ -1,4 +1,14 @@
-.personaje-imagen {
-   width: 150px;
-   height: auto;
+.card-header {
+   text-align: center;
+}
+
+.col-4 {
+   text-align: center;
+   border-right: 1px solid gray;
+}
+
+.col-8 {
+   text-align: justify;
+   padding-left: 30px;
+   padding-right: 50px;
 }

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Wiki Rick | Personajes</title>
+   <link rel="stylesheet" href="./lib/bootstrap-5.3.0/css/bootstrap.min.css">
+   <script defer src="./lib/bootstrap-5.3.0/js/bootstrap.bundle.min.js"></script>
+   <link rel="stylesheet" href="./css/personajes.css">
+   <link rel="stylesheet" href="./css/menu.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><img src="./resources/img/PngItem_5175553.png" alt="portal icon" id="icon_portal"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="personajes.html">Personajes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="capitulos.html">Capitulos</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <h1>Ingreso de personaje</h1>
+    <form id="myForm">
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre:</label>
+        <input type="text" class="form-control" id="nombre" required>
+        <span id="validNombre"></span>
+      </div>
+      <div class="mb-3">
+        <label for="origen" class="form-label">Origen:</label>
+        <input type="text" class="form-control" id="origen" required>
+        <span id="validOrigen"></span>
+      </div>
+      <div class="mb-3">
+        <label for="especie" class="form-label">Especie:</label>
+        <input type="text" class="form-control" id="especie" required>
+        <span id="validEspecie"></span>
+      </div>
+      <div class="mb-3">
+        <label for="imagen">Imagen:</label>
+        <input  type="file" id="imagen" name="imagen" accept="image/jpeg, image/png">
+      </div>
+      <button onclick="leerInput();" type="button" class="btn btn-primary">Enviar</button>
+    </form>
+    
+    <div class="container-fluid">
+      <div class="card mt-2">
+         <div class="card-header">
+            <h1>Personajes de Rick y Morty</h1>
+         </div>
+         <input onclick="leerApi();" type="button" value="Personajes">
+         <table class="table table-hover">
+            <thead class="table-dark">
+               <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Origen</th>
+                  <th scope="col">Especie</th>
+                  <th scope="col">Imagen</th>
+                  <th scope="col">Opciones</th>
+               </tr>
+            </thead>
+            <tbody id="pjs">
+            </tbody>
+          </table>
+      </div>
+    </div>
+
+  <script src="./js/listaPersonajes.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
