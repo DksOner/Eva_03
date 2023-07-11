@@ -1,4 +1,5 @@
 const url = 'https://rickandmortyapi.com/api/character';
+let datosAPI = [];
 
 function mostrarPersonajes() {
    fetch(url)
@@ -25,6 +26,15 @@ function mostrarPersonajes() {
          imagen.alt = i.name;
          imagen.classList.add("personaje-imagen");
          columnImagen.appendChild(imagen);
+
+         // Aquí guarde los datos en el array**
+         datosAPI.push({
+            id: i.id,
+            name: i.name,
+            species: i.species,
+            origin: i.origin.name,
+            image: i.image
+         });
       };
    })
    .catch(function(error) {
